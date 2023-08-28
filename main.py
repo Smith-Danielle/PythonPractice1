@@ -74,6 +74,14 @@ def block_print(string):
         blocked += "\n"
     return blocked[:-1]
 
-print(block_print("heLLo WorLD"))
-print("_______________________________________________________________")
-print("H   H EEEEE L     L      OOO        W   W  OOO  RRRR  L     DDDD\nH   H E     L     L     O   O       W   W O   O R   R L     D   D\nH   H E     L     L     O   O       W   W O   O R   R L     D   D\nHHHHH EEEEE L     L     O   O       W W W O   O RRRR  L     D   D\nH   H E     L     L     O   O       W W W O   O R R   L     D   D\nH   H E     L     L     O   O       W W W O   O R  R  L     D   D\nH   H EEEEE LLLLL LLLLL  OOO         W W   OOO  R   R LLLLL DDDD")
+def max_sum(arr,ranges):
+    max_values = []
+    for x in ranges:
+        index = x[0]
+        temp_max = 0
+        while index <= x[1]:
+            temp_max += arr[index]
+            index += 1
+        max_values += [temp_max]
+    return max(max_values)
+
