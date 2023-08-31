@@ -85,3 +85,18 @@ def max_sum(arr,ranges):
         max_values += [temp_max]
     return max(max_values)
 
+
+def alan_annoying_kid(sentence):
+    action = sentence[sentence.index('I') + 2:]
+    didnt = "didn't" in sentence
+    response = "I don't think you " + action[:-1] + " today, I think you "
+    if didnt:
+        verb = action[7:]
+        verb = verb[0:verb.index(" ")]
+        response += "did " + verb + " it!"
+    else:
+        verb = action[0:action.index(" ") - 2]
+        response += "didn't " + verb + " at all!"
+    return response
+
+print(alan_annoying_kid("Today I didn't play football."))
