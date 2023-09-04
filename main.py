@@ -99,4 +99,29 @@ def alan_annoying_kid(sentence):
         response += "didn't " + verb + " at all!"
     return response
 
-print(alan_annoying_kid("Today I didn't play football."))
+def added_char(s1, s2):
+    for x in s1:
+        s2 = s2.replace(x, '', 1)
+    return s2[0]
+
+def ascend_descend(length, minimum, maximum):
+    word = ""
+    if maximum < minimum or length == 0:
+        return word
+    current = minimum
+    increase = True
+    while len(word) < length:
+        word += str(current)
+        if current == maximum:
+            increase = False
+        if current == minimum:
+            increase = True
+        if maximum == minimum:
+            continue
+        elif increase:
+            current += 1
+        else:
+            current -= 1
+    while len(word) > length:
+        word = word[:-1]
+    return word
