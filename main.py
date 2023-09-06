@@ -125,3 +125,29 @@ def ascend_descend(length, minimum, maximum):
     while len(word) > length:
         word = word[:-1]
     return word
+
+
+def autocomplete(input_, dictionary):
+    check = ""
+    for x in input_:
+        if x.lower() in "abcdefghijklmnopqrstuvwxyz":
+            check += x
+    length = len(check)
+    return [x for x in dictionary if x[0:length].lower() == check.lower()][:5]
+
+def solve(arr):
+    ascend_check = []
+    for x in range(len(arr) - 1):
+        ascend_check += [arr[x] < arr[x + 1]]
+    if len([x for x in ascend_check if x == True]) == len(arr) - 1:
+        return "A"
+    if len([x for x in ascend_check if x == False]) == len(arr) - 1:
+        return "D"
+    if len([x for x in ascend_check if x == True]) > len([x for x in ascend_check if x == False]):
+        return "RA"
+    if len([x for x in ascend_check if x == True]) == len([x for x in ascend_check if x == False]):
+        if ascend_check[0] == True:
+            return "RD"
+        else:
+            return "RA"
+    return "RD"
