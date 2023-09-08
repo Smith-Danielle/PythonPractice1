@@ -151,3 +151,38 @@ def solve(arr):
         else:
             return "RA"
     return "RD"
+
+def smile(text):
+    for x in range(len(text)):
+        if text[x] == ":" or text[x] == ";" or text[x] == "=":
+            if x != len(text) - 1:
+                if text[x + 1] == "(":
+                    text = text[0: x + 1] + ")" + text[x + 2:]
+                if text[x + 1] == "[":
+                    text = text[0: x + 1] + "]" + text[x + 2:]
+                if text[x + 1] == "-" or text[x + 1] == "~":
+                    if x != len(text) - 2:
+                        if text[x + 2] == "(":
+                            text = text[0: x + 2] + ")" + text[x + 3:]
+                        if text[x + 2] == "[":
+                            text = text[0: x + 2] + "]" + text[x + 3:]
+    return text
+
+def one_down(txt):
+    if type(txt) != str:
+        return "Input is not a string"
+    decoded = ""
+    letters = "abcdefghijklmnopqrstuvwxyz"
+    for x in txt:
+        if x.lower() in letters:
+            temp_letter = ""
+            if letters.index(x.lower()) == 0:
+                temp_letter = "z"
+            else:
+                temp_letter = letters[letters.index(x.lower()) - 1]
+            if not x.islower():
+                temp_letter = temp_letter.upper()
+            decoded += temp_letter
+        else:
+            decoded += x
+    return decoded
