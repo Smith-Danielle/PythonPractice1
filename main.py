@@ -186,3 +186,19 @@ def one_down(txt):
         else:
             decoded += x
     return decoded
+
+def solution(s):
+    alpha = "abcdefghijklmnopqrstuvwxyz"
+    sliced = ""
+    temp = ""
+    for x in s:
+        if len(temp) == 0:
+            temp += x
+        else:
+            temp += x
+            if temp not in alpha:
+                sliced += temp[:-1][::-1]
+                temp = temp[len(temp) - 1]
+    if len(temp) > 0:
+        sliced += temp[::-1]
+    return sliced
