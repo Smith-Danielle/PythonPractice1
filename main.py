@@ -227,4 +227,81 @@ def check_vin(number):
         return True
     return False
 
-print(check_vin("5YJ3E1EA7HF000337"))
+def find_children(dancing_brigade):
+    together = ""
+    alpha = "abcdefghijklmnopqrstuvwxyz"
+    for x in alpha:
+        if x.upper() in dancing_brigade:
+            together += x.upper()
+        if x in dancing_brigade:
+            while x in dancing_brigade:
+                together += x
+                dancing_brigade = dancing_brigade.replace(x, "", 1)
+    return together
+
+def hungry_foxes(farm):
+    fox_chick = ""
+    temp = ""
+    fox_outside = False
+    cage = False
+    for x in farm:
+        if cage:
+            if x == ']':
+                cage = False
+                if 'F' in temp:
+                    fox_chick += temp.replace('C', '.')
+                else:
+                    fox_chick += temp
+                fox_chick += x
+                temp = ""
+            else:
+                temp += x
+        else:
+            if x == '[':
+                cage = True
+                if len(temp) > 0 and 'F' in temp:
+                    fox_chick += temp.replace('C', '.')
+                    fox_outside = True
+                elif len(temp) > 0:
+                    fox_chick += temp
+                fox_chick += x
+                temp = ""
+            else:
+                temp += x
+
+    if len(temp) > 0:
+        if 'F' in temp:
+            fox_chick += temp.replace('C', '.')
+            fox_outside = True
+        else:
+            fox_chick += temp
+        temp = ""
+        cage = False
+
+    fox_check = ""
+    if fox_outside and '[' in farm:
+        for x in fox_chick:
+            if cage:
+                if x == ']':
+                    cage = False
+                    fox_check += temp
+                    fox_check += x
+                    temp = ""
+                else:
+                    temp += x
+            else:
+                if x == '[':
+                    cage = True
+                    if len(temp) > 0:
+                        fox_check += temp.replace('C', '.')
+                    fox_check += x
+                    temp = ""
+                else:
+                    temp += x
+        if len(temp) > 0:
+                fox_check += temp.replace('C', '.')
+        fox_chick = fox_check
+        
+    return fox_chick
+
+print(hungry_foxes("CCFC.C..F[].C....C[C.CFCFCCC.F.FC.C.CCCFF..CF.F]CCCCC."))
