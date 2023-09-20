@@ -304,4 +304,16 @@ def hungry_foxes(farm):
         
     return fox_chick
 
-print(hungry_foxes("CCFC.C..F[].C....C[C.CFCFCCC.F.FC.C.CCCFF..CF.F]CCCCC."))
+def encrypter(strng):
+    alpha = "abcdefghijklmnopqrstuvwxyz"
+    answer = ""
+    for x in strng:
+        if x in alpha:
+            index_1 = alpha.index(x) + 13
+            if index_1 > 25:
+                index_1 = index_1 - 26
+            answer += alpha[abs(index_1 - 25)]
+        else:
+            answer += x
+    return answer
+
