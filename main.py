@@ -317,3 +317,23 @@ def encrypter(strng):
             answer += x
     return answer
 
+def string_suffix(str_):
+    words = [str_]
+    count = len(str_)
+    for x in range(len(str_) - 1):
+        words += [words[-1][1:]]
+    words = words[1:]
+    for x in range(len(words)):
+        loop = 0
+        if len(str_) > len(words[x]):
+            loop = len(words[x])
+        else:
+            loop = len(str_)
+        for y in range(loop):
+            if str_[y] == words[x][y]:
+                count += 1
+            else:
+                break
+    return count
+
+print(string_suffix('ababaa'))
