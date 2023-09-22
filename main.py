@@ -336,4 +336,16 @@ def string_suffix(str_):
                 break
     return count
 
-print(string_suffix('ababaa'))
+def autocorrect(input):
+    words = input.split(" ")
+    sentence = []
+    for x in words:
+        if x.lower() == "u" or x.lower() == "you":
+            sentence += ["your sister"]
+        elif "youu" in x.lower() and x.lower().index("youu") == 0:
+            sentence += ["your sister"]
+        elif "you" in x.lower() and x.lower().index("you") == 0 and not x.lower()[3].isalnum():
+            sentence += [x.replace("you", "your sister")]
+        else:
+            sentence += [x]
+    return " ".join(sentence)
