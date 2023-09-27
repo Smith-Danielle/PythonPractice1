@@ -349,3 +349,21 @@ def autocorrect(input):
         else:
             sentence += [x]
     return " ".join(sentence)
+
+def sequence(phrase):
+    phone = {"1":"1", "2":"ABC2", "3":"DEF3", "4":"GHI4", "5":"JKL5", "6":"MNO6", "7":"PQRS7", "8":"TUV8", "9":"WXYZ9", "*":"*", "0":" 0", "#":"#"}
+    keypad = ""
+    for x in phrase:
+        values = [y for y in phone.values() if x.upper() in y][0]
+        button = list(phone.keys())[list(phone.values()).index(values)]
+        temp = ""
+        count = values.index(x.upper()) + 1
+        temp = ""
+        for z in range(count):
+            temp += button
+        if len(keypad) > 0 and keypad[-1] == button:
+            keypad += "p"
+        keypad += temp
+    return keypad
+
+print(sequence("a"))
