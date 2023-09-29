@@ -366,4 +366,24 @@ def sequence(phrase):
         keypad += temp
     return keypad
 
-print(sequence("a"))
+def yes_no(arr):
+    order = []
+    start_first = True
+    while len(arr) > 0:
+        for x in range(len(arr)):
+            if start_first:
+                if x % 2 == 0:
+                    order += [arr[x]]
+                    arr[x] = '0'
+            else:
+                if x % 2 != 0:
+                    order += [arr[x]]
+                    arr[x] = '0'
+        if arr[-1] == '0':
+            start_first = False
+        else:
+            start_first = True
+        arr = [i for i in arr if i != '0']
+    return order
+
+print(yes_no([6, '!', 'mighty', 'big', 6, 'pippi', 666, 1, 'is', 666, 'testing', 'pippi', 'beware', 'is', 0, 0, 9, 'the', 'mighty']))
