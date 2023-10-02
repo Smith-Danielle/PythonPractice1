@@ -386,4 +386,30 @@ def yes_no(arr):
         arr = [i for i in arr if i != '0']
     return order
 
-print(yes_no([6, '!', 'mighty', 'big', 6, 'pippi', 666, 1, 'is', 666, 'testing', 'pippi', 'beware', 'is', 0, 0, 9, 'the', 'mighty']))
+def solveit(s):
+    alpha = "abcdefghijklmnopqrstuvwxyz";
+    vowels = list(sorted([x for x in s if x in "aeiou"]))
+    cons = list(sorted([x for x in s if x not in "aeiou"]))
+    v_length = len(vowels)
+    c_length = len(cons)
+    lexi = ""
+    if v_length + 1 == c_length or v_length - 1 == c_length or v_length == c_length:
+        if v_length > c_length or v_length == c_length:
+            for x in range(c_length):
+                lexi += vowels[x]
+                lexi += cons[x]
+            if v_length > c_length:
+                lexi += vowels[-1]
+        else:
+            for x in range(v_length):
+                lexi += cons[x]
+                lexi += vowels[x]
+            lexi += cons[-1]
+    if lexi == "":
+        return "failed"
+    return lexi
+
+print(solveit("oruder"))
+
+
+
