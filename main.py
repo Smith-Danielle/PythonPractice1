@@ -409,7 +409,29 @@ def solveit(s):
         return "failed"
     return lexi
 
-print(solveit("oruder"))
+def reverse(st):
+    reversal = ""
+    last = ""
+    for x in st:
+        if len(last) == 0 or x == last[-1]:
+            last += x
+        else:
+            if len(last) > 1:
+                if last.islower():
+                    reversal += last.upper()
+                else:
+                    reversal += last.lower()
+            else:
+                reversal += last
+            last = x
+    if len(last) != 0:
+        if len(last) > 1:
+            if last.islower():
+                reversal += last.upper()
+            else:
+                reversal += last.lower()
+        else:
+            reversal += last
+    return reversal
 
-
-
+print(reverse("hello world"))
