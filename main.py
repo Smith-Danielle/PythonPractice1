@@ -434,4 +434,52 @@ def reverse(st):
             reversal += last
     return reversal
 
-print(reverse("hello world"))
+def change_case(identifier, target_case):
+    if identifier == "":
+        return identifier
+
+    if target_case not in ["snake", "camel", "kebab"]:
+        return None
+
+    hasCaps = len([i for i in identifier if i.isupper()]) > 0
+    hasDash = len([i for i in identifier if i == "-"]) > 0
+    hasUnder = len([i for i in identifier if i == "_"]) > 0
+
+    if len([i for i in [hasCaps, hasDash, hasUnder] if i == True]) > 1:
+        return None
+
+    words = []
+
+    if hasCaps:
+        temp = ""
+        for x in identifier:
+            if x.isupper():
+                words += [temp.lower()]
+                temp = x
+            else:
+                temp += x
+        words += [temp.lower()]
+
+    if hasDash:
+        words = identifier.split("-")
+
+    if hasUnder:
+        words = identifier.split("_")
+
+    if target_case == "snake":
+        return "_".join(words)
+
+    if target_case == "camel":
+        group = []
+        for x in range(len(words)):
+            if x == 0:
+                group += [words[x]]
+            else:
+                group += [words[x].capitalize()]
+        return "".join(group)
+
+    return "-".join(words)
+
+print(change_case("snakeCase", "snake"))
+
+
