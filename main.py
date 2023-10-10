@@ -480,6 +480,37 @@ def change_case(identifier, target_case):
 
     return "-".join(words)
 
-print(change_case("snakeCase", "snake"))
+def flesch_kincaid(text):
+    sentences = []
+    temp = ""
+    for x in text:
+        temp += x
+        if x == "." or x == "?" or x == "!":
+            sentences += [temp.strip()]
+            temp = ""
+    words_count = [len(x.split(" ")) for x in sentences]
+    words_per_sentence = sum(words_count) / len(sentences)
+
+    all_words = text.split(" ")
+    remove_letters = [x.replace("a", " ") for x in all_words]
+    remove_letters = [x.replace("A", " ") for x in remove_letters]
+    remove_letters = [x.replace("e", " ") for x in remove_letters]
+    remove_letters = [x.replace("E", " ") for x in remove_letters]
+    remove_letters = [x.replace("i", " ") for x in remove_letters]
+    remove_letters = [x.replace("I", " ") for x in remove_letters]
+    remove_letters = [x.replace("o", " ") for x in remove_letters]
+    remove_letters = [x.replace("O", " ") for x in remove_letters]
+    remove_letters = [x.replace("u", " ") for x in remove_letters]
+    remove_letters = [x.replace("U", " ") for x in remove_letters]
+    remove_letters = [x.replace("  ", " ") for x in remove_letters]
+    remove_letters = [len([i for i in x if i == " "]) for x in remove_letters]
+    syllables_per_word = sum(remove_letters) / len(all_words)
+
+    return round((0.39 * words_per_sentence) + (11.8 * syllables_per_word) - 15.59, 2)
+
+print(flesch_kincaid("The turtle is leaving."))
+
+
+
 
 
