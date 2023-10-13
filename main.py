@@ -508,9 +508,43 @@ def flesch_kincaid(text):
 
     return round((0.39 * words_per_sentence) + (11.8 * syllables_per_word) - 15.59, 2)
 
-print(flesch_kincaid("The turtle is leaving."))
+def do_math(s) :
+    parts = s.split(" ")
+    nums = []
+    letters = []
+    for x in parts:
+        nums += [int("".join([i for i in x if i.isnumeric()]))]
+        letters += [i for i in x if i.isalpha()]
+    alpha = "abcdefghijklmnopqrstuvwxyz"
+    place = []
+    for x in range(len(letters)):
+        if len(place) > 0 and letters[x] in letters[0 : x]:
+            place += [max([i for i in place[0 : x] if i >= alpha.find(letters[x]) and i <= alpha.find(letters[x]) + .99]) + .01]
+        else:
+            place += [alpha.find(letters[x])]
+    dictionary = {place[x] : nums[x] for x in range(len(nums))}
+    sorted_dictionary = dict(sorted(dictionary.items()))
+    sorted_nums = sorted_dictionary.values()
+    operator = "+"
+    math = ""
+    for x in sorted_nums:
+        if math == "":
+            math = int(x)
+        elif operator == "+":
+            operator = "-"
+            math += x
+        elif operator == "-":
+            operator = "*"
+            math -= x
+        elif operator == "*":
+            operator = "/"
+            math *= x
+        else:
+            operator = "+"
+            math /= x
+    return round(math)
 
-
+print(do_math("24z6 1z23 y369 89z 900b"))
 
 
 
