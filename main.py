@@ -544,7 +544,45 @@ def do_math(s) :
             math /= x
     return round(math)
 
-print(do_math("24z6 1z23 y369 89z 900b"))
+def fruit_pack(orders):
+    shop = []
+    for x in orders:
+        bag = ""
+        box = ""
+        pallet = ""
+        number = ""
+        for y in x:
+            if y.isnumeric():
+                number += y
+            else:
+                num = int(number)
+                while num >= 50:
+                    pallet += "[" + y + "]"
+                    num -= 50
+                while num >= 10:
+                    box += "{" + y + "}"
+                    num -= 10
+                if num > 0:
+                    bag += "("
+                    while num > 0:
+                        bag += y
+                        num -= 1
+                    bag += ")"
+                number = ""
+        lengths = [len(bag), len(box), len(pallet)]
+        max_length = max(lengths)
+        while len(bag) < max_length:
+            bag = "-" + bag
+        while len(box) < max_length:
+            box = "-" + box
+        while len(pallet) < max_length:
+            pallet = "-" + pallet
+        shop += [[bag, box, pallet]]
+    return shop
+
+print(fruit_pack(['10a3b', '64j1k92i']))
+
+
 
 
 
