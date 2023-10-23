@@ -580,7 +580,33 @@ def fruit_pack(orders):
         shop += [[bag, box, pallet]]
     return shop
 
-print(fruit_pack(['10a3b', '64j1k92i']))
+def one_two_three(n):
+    first = "0"
+    second = "0"
+    if n < 10:
+        first = str(n)
+    else:
+        num = str(n)
+        sum = 0
+        for x in num:
+            sum += int(x)
+        nines = int(num[:-1])
+        temp = ""
+        for y in range(nines):
+            temp += '9'
+        if nines >= 10:
+            temp_nine = int(str(nines)[:-1])
+            for z in range(temp_nine):
+                temp += '9'
+        if sum >= 10:
+            sum -= 9
+            temp += '9'
+        first = temp + str(sum)
+    for x in range(n):
+        second += '1'
+    return [int(first), int(second)]
+
+print(one_two_three(222))
 
 
 
