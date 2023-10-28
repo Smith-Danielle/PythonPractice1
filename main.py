@@ -606,7 +606,20 @@ def one_two_three(n):
         second += '1'
     return [int(first), int(second)]
 
-print(one_two_three(222))
+# d = direction, v = values array, c = number to search
+# return None in case of value not found
+def cycle(d, v, c):
+    if c in v:
+        index = v.index(c)
+        index += d
+        if index < 0:
+            index = len(v) - 1
+        if index > len(v) - 1:
+            index = 0
+        return v[index]
+    return None
+
+
 
 
 
