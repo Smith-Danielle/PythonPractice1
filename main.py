@@ -619,9 +619,67 @@ def cycle(d, v, c):
         return v[index]
     return None
 
+def pop_blocks(lst):
+    change_made = True
+    popped = []
+    while change_made:
+        match = ""
+        match_found = False
+        for x in range(len(lst)):
+            if not match_found:
+                if x != len(lst) - 1:
+                    if lst[x] != lst[x + 1]:
+                        if lst[x] != match:
+                            popped += [lst[x]]
+                        if match != "":
+                            match_found = True
+                        match = ""
+                    else:
+                        match = lst[x]
+                else:
+                    if lst[x] != match:
+                        popped += [lst[x]]
+            else:
+                popped += [lst[x]]
+        if lst == popped:
+            change_made = False
+        else:
+            change_made = True
+            lst = popped
+            popped = []
+    return popped
 
+def range_parser(s):
+    nums = []
+    s += ','
+    s = [x for x in s.split(',') if x != ""]
+    for x in s:
+        step = 0
+        first = 0
+        last = 0
+        divide = ""
+        if '-' in x:
+            divide = x.split('-')
+            first = int(divide[0].strip())
+            if ':' in divide[1]:
+                temp = divide[1].split(':')
+                last = int(temp[0].strip())
+                step = int(temp[1].strip())
+            else:
+                last = int(divide[1].strip())
+        if step > 0:
+            while first <= last:
+                nums += [first]
+                first += step
+        elif first > 0 and last > 0:
+            while first <= last:
+                nums += [first]
+                first += 1
+        else:
+            nums += [int(x.strip())]
+    return nums
 
-
+print(range_parser('5-10'))
 
 
 
