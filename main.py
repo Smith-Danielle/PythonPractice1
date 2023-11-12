@@ -679,7 +679,15 @@ def range_parser(s):
             nums += [int(x.strip())]
     return nums
 
-print(range_parser('5-10'))
-
-
+def morse_converter(strng):
+    code = ["-----", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----."]
+    number = ""
+    temp = ""
+    for x in range(len(strng)):
+        if x % 5 == 0 and x != 0:
+            number += str(code.index(temp))
+            temp = ""
+        temp += strng[x]
+    number += str(code.index(temp))
+    return int(number)
 
