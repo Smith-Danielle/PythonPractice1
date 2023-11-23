@@ -691,3 +691,51 @@ def morse_converter(strng):
     number += str(code.index(temp))
     return int(number)
 
+def is_keith_number(n):
+    keith = False
+    if len(str(n)) == 1:
+        return keith
+    iteration = 0
+    num = [int(x) for x in str(n)]
+    while True:
+        iteration += 1
+        num += [sum(num)]
+        num = num[1:]
+        if num[-1] == n:
+            return iteration
+        if num[-1] > n:
+            break
+    return keith
+
+def reverse_fizz_buzz(array):
+    fizz = ""
+    buzz = ""
+    for x in range(len(array)):
+        if fizz != "" and buzz != "":
+            break
+        if fizz == "":
+            if array[x] == "Fizz" or array[x] == "FizzBuzz":
+                fizz = x + 1
+        if buzz == "":
+            if array[x] == "Buzz" or array[x] == "FizzBuzz":
+                buzz = x + 1
+    return (fizz, buzz)
+
+def alternate_sort(l):
+    neg = sorted([x for x in l if x < 0])
+    neg.reverse()
+    pos = sorted([x for x in l if x >= 0])
+    lengths = [len(neg), len(pos)]
+    output = []
+    if lengths[0] > 0 and lengths[1] > 0:
+        for x in range(max(lengths)):
+            if len(neg) - 1 >= x:
+                output += [neg[x]]
+            if len(pos) - 1 >= x:
+                output += [pos[x]]
+        return output
+    elif lengths[0] > 0:
+        return neg
+    return pos
+
+print(alternate_sort([5, 2, -3, -9, -4, 8]))
