@@ -738,4 +738,20 @@ def alternate_sort(l):
         return neg
     return pos
 
-print(alternate_sort([5, 2, -3, -9, -4, 8]))
+def min_repeating_character_difference(text):
+    min_dist = 0
+    min_value = ""
+    for x in range(len(text)):
+        if x != len(text) - 1 and text[x] in text[x + 1:]:
+            temp_dist = text[x + 1:].index(text[x]) + (x + 1) - x
+            if min_dist == 0 or temp_dist < min_dist:
+                min_dist = temp_dist
+                min_value = text[x]
+        if min_dist == 1:
+            return (min_dist, min_value)
+    if min_dist == 0:
+        return None
+    return (min_dist, min_value)
+
+def manhattan_distance(pointA, pointB):
+    return abs(pointA[0] - pointB[0]) + abs(pointA[1] - pointB[1])
