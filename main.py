@@ -755,3 +755,88 @@ def min_repeating_character_difference(text):
 
 def manhattan_distance(pointA, pointB):
     return abs(pointA[0] - pointB[0]) + abs(pointA[1] - pointB[1])
+
+def alphabetized(s):
+    a = ""
+    b = ""
+    c = ""
+    d = ""
+    e = ""
+    f = ""
+    g = ""
+    h = ""
+    i = ""
+    j = ""
+    k = ""
+    l = ""
+    m = ""
+    n = ""
+    o = ""
+    p = ""
+    q = ""
+    r = ""
+    ss = ""
+    t = ""
+    u = ""
+    v = ""
+    w = ""
+    xx = ""
+    y = ""
+    z = ""
+    for x in s:
+        if x == "a" or x == "A":
+            a += x
+        elif x == "b" or x == "B":
+            b += x
+        elif x == "c" or x == "C":
+            c += x
+        elif x == "d" or x == "D":
+            d += x
+        elif x == "e" or x == "E":
+            e += x
+        elif x == "f" or x == "F":
+            f += x
+        elif x == "g" or x == "G":
+            g += x
+        elif x == "h" or x == "H":
+            h += x
+        elif x == "i" or x == "I":
+            i += x
+        elif x == "j" or x == "J":
+            j += x
+        elif x == "k" or x == "K":
+            k += x
+        elif x == "l" or x == "L":
+            l += x
+        elif x == "m" or x == "M":
+            m += x
+        elif x == "n" or x == "N":
+            n += x
+        elif x == "o" or x == "O":
+            o += x
+        elif x == "p" or x == "P":
+            p += x
+        elif x == "q" or x == "Q":
+            q += x
+        elif x == "r" or x == "R":
+            r += x
+        elif x == "s" or x == "S":
+            ss += x
+        elif x == "t" or x == "T":
+            t += x
+        elif x == "u" or x == "U":
+            u += x
+        elif x == "v" or x == "V":
+            v += x
+        elif x == "w" or x == "W":
+            w += x
+        elif x == "x" or x == "X":
+            xx += x
+        elif x == "y" or x == "Y":
+            y += x
+        elif x == "z" or x == "Z":
+            z += x
+    return a+b+c+d+e+f+g+h+i+j+k+l+m+n+o+p+q+r+ss+t+u+v+w+xx+y+z
+
+print(alphabetized("A b B a"))
+
