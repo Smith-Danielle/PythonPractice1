@@ -836,7 +836,47 @@ def alphabetized(s):
             y += x
         elif x == "z" or x == "Z":
             z += x
-    return a+b+c+d+e+f+g+h+i+j+k+l+m+n+o+p+q+r+ss+t+u+v+w+xx+y+z
 
-print(alphabetized("A b B a"))
+def winner(deck_steve, deck_josh):
+    steve = 0
+    josh = 0
+    for i in range(len(deck_steve)):
+        temp_S = 0
+        temp_J = 0
+        if deck_steve[i].isnumeric():
+            temp_S = int(deck_steve[i])
+        else:
+            if deck_steve[i] == 'T':
+                temp_S = 10
+            elif deck_steve[i] == 'J':
+                temp_S = 11
+            elif deck_steve[i] == 'Q':
+                temp_S = 12
+            elif deck_steve[i] == 'K':
+                temp_S = 13
+            else:
+                temp_S = 14
+        if deck_josh[i].isnumeric():
+            temp_J = int(deck_josh[i])
+        else:
+            if deck_josh[i] == 'T':
+                temp_J = 10
+            elif deck_josh[i] == 'J':
+                temp_J = 11
+            elif deck_josh[i] == 'Q':
+                temp_J = 12
+            elif deck_josh[i] == 'K':
+                temp_J = 13
+            else:
+                temp_J = 14
+        if temp_S > temp_J:
+            steve += 1
+        elif temp_S < temp_J:
+            josh += 1
+    if steve > josh:
+        return "Steve wins " + str(steve) + " to " + str(josh)
+    elif steve < josh:
+        return "Josh wins " + str(josh) + " to " + str(steve)
+    return "Tie"
 
+print(winner(['A', '6', '6', '4', 'K', 'Q', '8', 'K', 'K', '3', 'Q', 'J', '7', '6', '7', '3', '6', '6', 'T', '6'], ['J', 'T', '3', '6', '2', 'K', '9', '6', 'J', 'J', 'T', 'J', '5', '7', 'J', 'K', '7', '4', '4', 'J']))
