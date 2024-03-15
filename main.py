@@ -879,4 +879,16 @@ def winner(deck_steve, deck_josh):
         return "Josh wins " + str(josh) + " to " + str(steve)
     return "Tie"
 
-print(winner(['A', '6', '6', '4', 'K', 'Q', '8', 'K', 'K', '3', 'Q', 'J', '7', '6', '7', '3', '6', '6', 'T', '6'], ['J', 'T', '3', '6', '2', 'K', '9', '6', 'J', 'J', 'T', 'J', '5', '7', 'J', 'K', '7', '4', '4', 'J']))
+def find_discounted(prices):
+    nums = [int(i) for i in prices.split()]
+    discounted = []
+    for i in range(len(nums)):
+        if nums[i] != "":
+            rounded = round(nums[i] * .75)
+            if rounded in nums:
+                discounted += [rounded]
+                nums[i] = ""
+                nums[nums.index(rounded)] = ""
+    return ' '.join([str(i) for i in discounted])
+
+print(find_discounted("0 0"))
